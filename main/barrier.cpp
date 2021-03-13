@@ -17,14 +17,13 @@
 //led verde -> barrera up    -> pin 8 (pinBU)
 //led rojo  -> barrera down  -> pin 9 (pinBD)
 
-//Constructor
+
 Barrier::Barrier(){
   barrier_status = false;
   pinMode(pinBU,OUTPUT);    digitalWrite(pinBU, LOW);
   pinMode(pinBD,OUTPUT);    digitalWrite(pinBD, HIGH);
 }
 
-//Destructor
 Barrier::~Barrier() {}
 
 //Bajar barrera o barrera bajada

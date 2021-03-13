@@ -12,9 +12,7 @@
 #ifndef BUTTON_H
 #define BUTTON_H 
 
-#include <Arduino.h>
-
-const int pinButton = 10;
+#include "parking.h"
 
 class button 
 {

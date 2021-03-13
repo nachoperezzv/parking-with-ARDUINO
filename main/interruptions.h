@@ -12,9 +12,8 @@
 #ifndef INTERRUPTIONS_H
 #define INTERRUPTIONS_H
 
-#include <Arduino.h>
 #include "parking.h"    //Se supone que al incluir esto se tiene acceso a las variables
-                        //creadas --> screen, bar y but
+                        //creadas --> screen, barE, barS y but
 
 //Nombres de las funciones de las interrupciones
 

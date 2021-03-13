@@ -15,5 +15,6 @@ void setUp()
 {
   lcd screen();
   button but();
-  barrier bar();
+  barrier barE();
+  barrier barS();
 }

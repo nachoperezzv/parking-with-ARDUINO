@@ -12,10 +12,7 @@
 #ifndef BARRIER_H
 #define BARRIER_H
 
-#include <Arduino.h>
-
-const int pinBU = 8;
-const int pinBD = 9;
+#include "parking.h"
 
 class barrier 
 {

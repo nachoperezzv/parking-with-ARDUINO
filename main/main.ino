@@ -15,6 +15,8 @@
 void setup() {
   setUp();  //Funcion de parking.h con la que se crean objetos de lcd (screen), button (but)
             //y barrier (barE y barS). 
+  setISR_BE();
+  setISR_BS();
 }
 
 void loop() {

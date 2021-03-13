@@ -16,6 +16,10 @@
                         //creadas --> screen, barE, barS y but
 
 //Nombres de las funciones de las interrupciones
+void setISR();
+
+void ISR_BE();
+void ISR_BS();
 
 
 #endif // interruptions.h

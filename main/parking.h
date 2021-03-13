@@ -19,6 +19,8 @@
 #include "button.h"
 #include "lcd.h"
 
+#include "interruptions.h"
+
 //MACROS
 #define maxCoches 100
 #define minCoches 0

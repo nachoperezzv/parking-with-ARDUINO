@@ -11,7 +11,6 @@
 
 #include "barrier.h"
 
-
 //Estado barrera igual a leds. Se crean dos objetos de la clase barrera, uno para barrara
 //salida y el otro para barrera entrada. Los leds corresponden al estado abierta cerrada
 //led verde -> barrera up    -> pin 8 (pinBU)

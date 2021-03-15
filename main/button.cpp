@@ -32,6 +32,5 @@ bool Button::getButtonStatus(){
     return true;
   }
   else
-    return false;
-    
+    return false;    
 }

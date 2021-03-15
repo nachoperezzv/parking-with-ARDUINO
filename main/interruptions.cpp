@@ -14,15 +14,21 @@
 const int pinISR1 = 2;
 const int pinISR2 = 3;
 
+const int waiting_time = 5000;
+
 void setISR(){
   attachInterrupt(digitalPinToInterrupt(pinISR1),ISR_BE, RISING);
   attachInterrupt(digitalPinToInterrupt(pinISR2),ISR_BS, RISING);
 }
 
 void ISR_BE(){
+  LCD screen;
+  Button but;
+  Barrier barE;
+  
   unsigned long time_;
   
-  printWelcome(); //Funcion LCD
+  screen.printWelcome(); //Funcion LCD
   
   while(true){
     if(but.getButton()){
@@ -31,19 +37,22 @@ void ISR_BE(){
       time_ = millis();
       while(millis()- time_ <= waiting_time){ /*Tiempo espera coche entra*/ }
 
-      BE.barrierDown();
-      closeScreen();
+      barE.barrierDown();
+      screen.closeScreen();
 
-      if(getButtonStatus())
+      if(but.getButtonStatus())
         break;
     }
   }
 }
 
 void ISR_BS(){
-  unsiegned long time_;
+  LCD screen;
+  Barrier barS;
+  
+  unsigned long time_;
 
-  printGoodbye();
+  screen.printGoodbye();
   barS.barrierUp();
   
   time_ = millis();
@@ -51,5 +60,5 @@ void ISR_BS(){
 
   barS.barrierDown();
 
-  closeScreen();
+  screen.closeScreen();
 }

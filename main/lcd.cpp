@@ -11,27 +11,31 @@
 
  #include "lcd.h"
 
- void setUpLCD(){
+ LCD::LCD(){
+    LiquidCrystal lcd(PIN_RS, PIN_EN, PIN_D4, PIN_D5, PIN_D6, PIN_D7); 
     lcd.begin(16, 2);
+    lcd.noDisplay();
  }
 
- void printWelcome(){
+ LCD::~LCD(){} 
+ 
+
+ void LCD::printWelcome(){
+    LiquidCrystal lcd(PIN_RS, PIN_EN, PIN_D4, PIN_D5, PIN_D6, PIN_D7); 
+    lcd.begin(16, 2);
     lcd.display();
     
     lcd.setCursor(0,0);
     lcd.print("Bienvenido");
 
-    printNumCoches();    
- }
- 
- void printNumCoches(){
     lcd.setCursor(0,1);
     lcd.print("Plazas:");
-    lcd.setCursor(13,1);
-    //lcd.print(numCoches);
+    lcd.setCursor(13,1); 
  }
 
- void printGoodbye(){
+ void LCD::printGoodbye(){
+    LiquidCrystal lcd(PIN_RS, PIN_EN, PIN_D4, PIN_D5, PIN_D6, PIN_D7); 
+    lcd.begin(16, 2);
     lcd.clear();
     lcd.setCursor(4,0);
     lcd.print("Gracias,");
@@ -39,6 +43,8 @@
     lcd.print("vuelva pronto");
  }
 
- void closeScreen(){
+ void LCD::closeScreen(){
+    LiquidCrystal lcd(PIN_RS, PIN_EN, PIN_D4, PIN_D5, PIN_D6, PIN_D7); 
+    lcd.begin(16, 2);
     lcd.noDisplay();
  }

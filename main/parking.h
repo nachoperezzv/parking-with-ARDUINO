@@ -33,11 +33,8 @@
 #define PIN_D7 7
 
 //VARIABLES: 
-volatile int numCoches;
+//volatile int numCoches;
 
-const int pinBU = 8;
-const int pinBD = 9;
-const int pinButton = 10;
 
 //FUNCIONES:
 void setUp();

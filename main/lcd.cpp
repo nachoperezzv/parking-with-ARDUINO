@@ -28,7 +28,7 @@
     lcd.setCursor(0,1);
     lcd.print("Plazas:");
     lcd.setCursor(13,1);
-    lcd.print(numCoches);
+    //lcd.print(numCoches);
  }
 
  void printGoodbye(){
@@ -37,8 +37,8 @@
     lcd.print("Gracias,");
     lcd.setCursor(2,1);
     lcd.print("vuelva pronto");
+ }
 
-    delay(1500);
-
+ void closeScreen(){
     lcd.noDisplay();
  }

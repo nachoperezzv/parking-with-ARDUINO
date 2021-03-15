@@ -41,3 +41,7 @@ bool Barrier::barrierUp(){
 
   return true;
 }
+
+bool Barrier::getBarrierStatus(){
+  return barrier_status;
+}

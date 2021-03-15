@@ -14,14 +14,19 @@
 
 #include "parking.h"
 
-class barrier 
+const int pinBU = 8;
+const int pinBD = 9;
+
+class Barrier 
 {
   public:
-    barrier();
-    ~barrier();
+    Barrier();
+    ~Barrier();
 
     bool barrierUp();
     bool barrierDown();
+
+    bool getBarrierStatus();
     
   protected:  
     bool barrier_status;    

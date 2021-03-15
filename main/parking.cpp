@@ -13,8 +13,8 @@
 
 void setUp()
 {
-  lcd screen();
-  button but();
-  barrier barE();
-  barrier barS();
+  setUpLCD();
+  Button but();
+  Barrier barE();
+  Barrier barS();
 }

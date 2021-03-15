@@ -14,13 +14,16 @@
 
 #include "parking.h"
 
-class button 
+const int pinButton = 10;
+
+class Button 
 {
    public:
-    button();
-    ~button();
+    Button();
+    ~Button();
     
     bool getButton();
+    bool getButtonStatus();
 
    protected:
     bool button_status;

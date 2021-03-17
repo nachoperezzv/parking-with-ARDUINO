@@ -13,9 +13,10 @@
 #include "interruptions.h"
 
 void setup(){
-  
+  Serial.begin(19200);
+  setISR();
 }
 
 void loop() {
-  setISR();
+  
 }

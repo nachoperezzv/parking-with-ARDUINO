@@ -22,12 +22,7 @@ class Button
     Button();
     ~Button();
     
-    bool getButton();
-    bool getButtonStatus();
-
-   protected:
-    bool button_status;
-   
+    bool getButton();   
 };
 
 

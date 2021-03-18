@@ -16,6 +16,8 @@ const int pinISR2 = 3;
 
 const int waiting_time = 5000;
 
+volatile bool T = true;
+
 void setISR(){
   attachInterrupt(digitalPinToInterrupt(pinISR1),ISR_BE, RISING);
   attachInterrupt(digitalPinToInterrupt(pinISR2),ISR_BS, RISING);
@@ -30,20 +32,34 @@ void ISR_BE(){
   
   screen.printWelcome(); //Funcion LCD
   
-  while(true){
-    if(but.getButton()){
-      barE.barrierUp();
+  while(T){
+    bool estate = but.getButton();
+    if(estate or Serial.readString() == "0"){
+      if(estate)
+        Serial.print(0);
+      if(Serial.readString() == "1")
+        barE.barrierUp();
 
-      time_ = millis();
-      while(millis()- time_ <= waiting_time){ /*Tiempo espera coche entra*/ }
+      /*
+       * while(digitalRead(PinSensor) == 0){ //Sensor cuando detecta coche = 0
+       *  //Do nothing
+       * }
+       * Serial.print("1",char); //Envia a Matlab señal de que ya no hay coche
+       * 
+       */      
+      delay(1000);
 
+      /*
+       * Serial.print(1);
+       */
       barE.barrierDown();
+      
       screen.closeScreen();
 
-      if(but.getButtonStatus())
-        break;
+      T = false;
     }
   }
+  T = true;
 }
 
 void ISR_BS(){

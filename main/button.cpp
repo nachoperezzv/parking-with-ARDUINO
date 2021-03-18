@@ -16,7 +16,6 @@
 
 //Constructor
 Button::Button(){
-  button_status = false;
   pinMode(pinButton,INPUT);
 }
 
@@ -24,13 +23,4 @@ Button::~Button(){}
 
 bool Button::getButton(){
   return digitalRead(pinButton);
-}
-
-bool Button::getButtonStatus(){
-  if(button_status){
-    button_status = false;
-    return true;
-  }
-  else
-    return false;    
 }

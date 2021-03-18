@@ -14,9 +14,10 @@
 
 void setup(){
   Serial.begin(19200);
+  Serial.setTimeout(1500);
   setISR();
 }
 
 void loop() {
-  
+  //Bucle vacío, mientras que no salten interrupciones el sistema en standby
 }

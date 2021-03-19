@@ -9,9 +9,23 @@
  *                                                                                    Marzo, 2021  
  */
 
+//Librerias internas utilizadas
 #include "parking.h"
 #include "interruptions.h"
 
+//Objetos creados
+LCD screen;
+Button but;
+Barrier barE;
+Barrier barS;
+
+//Variables utilizadas
+bool T = true;
+bool Est = false;
+
+volatile int numCoches = 0;
+
+//SetUp del programa
 void setup(){
   Serial.begin(19200);
   Serial.setTimeout(1500);
@@ -19,22 +33,63 @@ void setup(){
 }
 
 void loop() {
-  //Bucle vacío, mientras que no salten interrupciones el sistema en standby
+  
+  
+  if(ISRBE){        
+    screen.printWelcome(); //Funcion LCD  
+      
+    while(T){            
+      if(but.getButton() or (Serial.readString() == "0")){  //Lee si se ha pulsado boton 
+                                                            //(tanto interfaz como placa)
+        Serial.println("1");  //Le indica a Matlab que el sensor detecta coche                                                      
+        if((maxCoches - numCoches) > 0){  
+          if(Serial.readString() == "1" and maxCoches-numCoches>0){
+            Serial.println("2");
+            numCoches = numCoches + 1;
+                        
+            barE.barrierUp();     //Al caber, se levanta la barrera     
+         
+            while (digitalRead(pinISR1) == 0){
+              //Bucle que espera mientras detecte presencia, para no bajar la barrera mientras 
+              //el coche esta pasando
+            }
+          }
+          barE.barrierDown();   //Se baja la barrera una vez no se detecta coche
+          screen.closeScreen(); //Se apaga la pantalla LCD
+        }
+        T = false;              //Se sale del bucle principal
+      }   
+    }
+    T = true;     //Se pone en True de nuevo para cuando se vuelva a detectar otro coche, que entre en 
+                  //el bucle.(Volatile guarda el estado de una llamada a otra)
+  
+    ISRBE = false;
+                  //Se cambia para que cuando el sensor deje de detectar, la interrupción no salte
+                  //y no cambie el valor de la variable a true, impidiendo que entre en este
+                  //segmento de codigo.
+  }
 
-//  Esto es solo en caso de que Arduino, al ser esclavo necesite ester mandando todo el rato
-//  información a Matlab. Lo que se hace aquí es que si el boton es pulsado (en la interfaz)
-//  pero no se ha detectado ningún coche (no ha saltado la interrupción), se le devuelve a
-//  MatLab un valor que corresponde con: "NO HAY COCHE"
-//    
-//  OJO: da error escrito así por el uso de las variables ISR1 Y ISR2
-//
-//  if(!ISR1)
-//    Serial.println("4");
-//    
-//  if(!ISR2)
-//    Serial.println("4");
+  if(ISRBS){
+    screen.printGoodbye();
+    barS.barrierUp();
+    
+    while(digitalRead(pinISR2) == 0){
+      //Bucle que espera mientras detecte presencia, para no bajar la barrera mientras 
+      //el coche esta pasando
+    }
+    
+    barS.barrierDown();
+    screen.closeScreen();
+    
+    ISRBS = false;
+                  //Se cambia para que cuando el sensor deje de detectar, la interrupción no salte
+                  //y no cambie el valor de la variable a true, impidiendo que entre en este
+                  //segmento de codigo.
+  }
 
-  if(Serial.readString() == "0")  //Si el boton de la interfaz de Matlab se pulsa pero el sensor no detecta
-    Serial.println("4");    //presencia, se le envia un mensaje a Matlab (4 = No hay presencia de coche)
-
+  Serial.flush();
+  if(!ISRBE and Serial.readString() == "0")
+    Serial.println("4");
+                //En el caso en el que la interrupcion no se haya activado y se pulse el boton de la 
+                //interfaz se mandará un mensaje a MatLab indicando una solicitud denegada
 }

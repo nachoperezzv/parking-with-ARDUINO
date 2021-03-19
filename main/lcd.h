@@ -15,8 +15,8 @@
 #include <LiquidCrystal.h>
 #include "parking.h"
 
-#define PIN_RS 2
-#define PIN_EN 3
+#define PIN_RS 12
+#define PIN_EN 11
 #define PIN_D4 4
 #define PIN_D5 5
 #define PIN_D6 6

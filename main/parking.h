@@ -18,20 +18,14 @@
 #include "button.h"
 #include "lcd.h"
 
-#include "interruptions.h"
-
 //MACROS
 #define maxCoches 100
 #define minCoches 0
 
 
-//VARIABLES: 
-//volatile int numCoches;
-
-
 //CLASES:
 class Button;
 class Barrier;
-
+class LCD;
 
 #endif // parking.h

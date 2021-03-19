@@ -12,8 +12,7 @@
 #ifndef INTERRUPTIONS_H
 #define INTERRUPTIONS_H
 
-#include "parking.h"    //Se supone que al incluir esto se tiene acceso a las variables
-                        //creadas --> screen, barE, barS y but
+#include "parking.h"    //Se tiene acceso a button.h, barrier.h y lcd.h
 
 //Nombres de las funciones de las interrupciones
 void setISR();

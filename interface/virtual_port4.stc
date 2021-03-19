@@ -1,4 +1,4 @@
-Port = COM3
+Port = COM4
 BaudRate = 19200
 DataBits = 8
 Parity = N
@@ -76,4 +76,4 @@ ShowConnectionTimer = true
 ShowRxTxByteCounts = true
 ResetStatisticsWhenPortOpens = true
 RefreshInterval = 100
-WindowPosition = 15,116,700,480
+WindowPosition = 726,264,700,480

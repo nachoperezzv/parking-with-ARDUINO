@@ -26,7 +26,7 @@ Barrier::Barrier(){
 //Destructor
 Barrier::~Barrier() {}
 
-//Función que indica si hay que subir la barrera o está subida ya
+//Subir barrera o barrera subida
 bool Barrier::barrierDown(){
   digitalWrite(pinBD,HIGH);
   digitalWrite(pinBU,LOW);

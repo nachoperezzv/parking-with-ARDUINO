@@ -9,8 +9,11 @@
  *                                                                                    Marzo, 2021
  */
 
- #include "lcd.h"
+//Esta parte del código se encarga de mostrar al usuario el estado y las indicaciones necesarias para 
+//la circulación en el parking
 
+ #include "lcd.h"
+//Limpia la pantralla
  LCD::LCD(){
     LiquidCrystal lcd(PIN_RS, PIN_EN, PIN_D4, PIN_D5, PIN_D6, PIN_D7); 
     lcd.begin(16, 2);
@@ -19,7 +22,7 @@
 
  LCD::~LCD(){} 
  
-
+//Indica el número de plazas disponibles en el parking y da la bienvenida
  void LCD::printWelcome(){
     LiquidCrystal lcd(PIN_RS, PIN_EN, PIN_D4, PIN_D5, PIN_D6, PIN_D7); 
     lcd.begin(16, 2);

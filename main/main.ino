@@ -34,8 +34,8 @@ void setup(){
 
 void loop() {
   
-  
-  if(ISRBE){        
+  if(ISRBE){     
+    noInterrupts();   
     screen.printWelcome(); //Funcion LCD  
       
     while(T){            
@@ -67,11 +67,20 @@ void loop() {
                   //Se cambia para que cuando el sensor deje de detectar, la interrupción no salte
                   //y no cambie el valor de la variable a true, impidiendo que entre en este
                   //segmento de codigo.
+    interrupts();
   }
 
   if(ISRBS){
+    noInterrupts();         //Se desactivan las interrupciones momentanemente para que no salte 
+                            //mientras aun detecta el coche. Más tarde se vuelve a activar para 
+                            //saber si continua habiendo o no coche.
+    Serial.println("3");    //Le indica a Matlab que esta saliendo un coche para que aumente el
+                            //contador de plazas libres
     screen.printGoodbye();
     barS.barrierUp();
+    
+    if(numCoches>0)
+      numCoches = numCoches - 1;
     
     while(digitalRead(pinISR2) == 0){
       //Bucle que espera mientras detecte presencia, para no bajar la barrera mientras 
@@ -85,10 +94,11 @@ void loop() {
                   //Se cambia para que cuando el sensor deje de detectar, la interrupción no salte
                   //y no cambie el valor de la variable a true, impidiendo que entre en este
                   //segmento de codigo.
+    interrupts();
   }
 
   Serial.flush();
-  if(!ISRBE and Serial.readString() == "0")
+  if((!ISRBE or !ISRBS) and Serial.readString() == "0")
     Serial.println("4");
                 //En el caso en el que la interrupcion no se haya activado y se pulse el boton de la 
                 //interfaz se mandará un mensaje a MatLab indicando una solicitud denegada

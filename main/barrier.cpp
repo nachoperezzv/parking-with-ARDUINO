@@ -23,9 +23,10 @@ Barrier::Barrier(){
   pinMode(pinBD,OUTPUT);    digitalWrite(pinBD, HIGH);
 }
 
+//Destructor
 Barrier::~Barrier() {}
 
-//Bajar barrera o barrera bajada
+//Función que indica si hay que subir la barrera o está subida ya
 bool Barrier::barrierDown(){
   digitalWrite(pinBD,HIGH);
   digitalWrite(pinBU,LOW);

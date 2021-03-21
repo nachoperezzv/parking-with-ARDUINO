@@ -28,7 +28,7 @@ volatile int numCoches = 0;
 //SetUp del programa
 void setup(){
   Serial.begin(19200);
-  Serial.setTimeout(1500);
+  Serial.setTimeout(3200);
   setISR();
 }
 
